@@ -1,0 +1,907 @@
+HTTP (HyperText Transfer Protocol)
+인터넷에서 데이터를 주고 받기 위한 프로토콜
+클라이언트 - 서버 모델을 기반으로 동작하며, 웹 브라우저와 웹 서버 간의 통신에 주로 사용된다.
+1. 요청과 응답
+    HTTP는 클라이언트가 서버에게 요청(request)를 보내고, 서버는 클라이언트에게 응답(response)을 반환
+2. URL(Uniform Resource Locator)
+    HTTP 요청은 URL을 사용하여 특정 리소스를 식별한다. URL은 프로토콜(http, https), 도메인, 포트 번호, 경로, 쿼리 등을 사용하여 구성된다.
+3. 상태코드(State Code)
+    HTTP응답을 상태 코드로 나타낼 수 있다. 해당 요청의 처리 결과를 코드로 나타낸다.
+    ex)404 Not Found Error : 리소스를 찾을 수 없음
+       200 OK : 성공적인 요청
+       500 Internal Server Error : 서버 내부 오류
+4. 메소드(Method)
+    GET : 리소스 조회
+    POST : 데이터 전송 및 리소스 생성
+    PUT : 리소스 수정 또는 생성
+    DELETE : 리소스 삭제
+5. 상태 정보 유지
+    HTTP 프로토콜 자체는 상태 정보(Stateless)다. 각각의 요청과 응답이 독립적으로 처리된다.
+    사용자의 상태 정보 관리를 위해 쿠키(Cookie), 세션(Session), 토큰(Token) 등과 같은 기술들을 활용한다.
+
+-------------------------------------
+URL(Uniform Resource Locator)
+URL은 사용자와 개발자 모두에게 의미있는 정보를 전달해야 한다. 웹 어플리케이션에서 리소스에 접근하기 위한 일관된 방법을 정의 하는 과정이다.
+URL설계는 사용자 경험, 검색 엔지 최적화(SEO), 보안 등 다양한 측면을 고려하자.
+1. 경로
+    경로는 계층적 구조를 가진다. 각 단계가 리소스의 계층구조와 일치하도록 만들자.
+    예를 들어 /products/electronics/mobilephone과 같이 URL이 사위 카테고리부터 하위 카테고리까지 포함된 경로는 직관적이고 의미가 명확하다.
+2. 동사보다 명사, 복수보다 단수
+    /product/electronic/mobilephone
+    /user/Kim
+3. 대소문자 일관성
+    URL은 대소문자를 구별한다. 대부분 웹서버도 대소문자를 구별한다. 일관성을 위해서 소문자 또는 대문자만 사용하는 것이 좋다.
+4.하이픈(-) 사용
+    단어 사이에 하이픈(-)을 넣어서 가독성을 높일 수 있다. 스페이스, 언더바(_)보다 하이픈으로 분리하는 것을 권장한다.
+    /product/electronic/mobile-phone
+5.쿼리 문자열
+    필터링, 정렬, 검색과 같은 추가 매개변수가 필요한 경우 쿼리 문자열(query string)을 활용할 수 있다.
+    /product?category=electronic&sort=price
+6. RESTful 원칙 준수
+    리소스 식별 - 각 리소스마다 고유한 식별자(ID)가 포함되어야 한다.
+    메소드 사용, 계층 구조
+
+------------------------------------
+정적 페이지(Static Page), 동적 페이지(Dynamic Page)
+1. 정적 페이지
+    정적 페이지는 서버에 미리 작성된 HTML, CSS, Javascript 등의 파일로 구성된다. 파일은 서버에서 클라이언트에게 직접 전송되어 사용자에게 표시된다.
+    정적 페이지는 서버 측에서 별도의 처리나 데이터베이스와의 상호작영 없이 항상 동일한 내용을 제공한다.
+    정적 페이지는 웹 서버에서 캐싱되어 성능과 로딩 속도가 빠르고, 단순하고 안전적인 구조를 가진다.
+2. 동적 페이지
+    동적 페이지는 서버 측에서 요청에 따라 동적으로 생성되는 웹 페이지다. 사용자 요청에 따라 데이터베이스 조회, 계산, API호출 등을 통해 요청에 맞춰 컨텐츠를 생성한다.
+    동적 페이지는 프로그래밍 언어와 데이터베이스(SQL)를 활용하여 필요한 작업을 수행하고, 클라이언트에게 결과를 전달한다.
+    동적으로 만든 웹 어플리케이션은 사용자와 상호작용하고 개인화된 컨텐츠 제공과 같은 고급 기능을 구현하는데 유리하다.
+    하지만, 요청마다 데이터 처리와 계산 과정을 거치므로 성능면에서 더 많은 리소스를 필요로 한다.
+
+프론트엔드(Frontend)와 백엔드(Backend)
+프론트엔드는 사용자가 직접 상호작용하는 웹 어플리케이션의 시각적인 부분을 담당한다. 주로 웹 페이지의 디자인, 레이아웃, UI요소를 구성하고 제어하는 역할을 한다.
+HTML, CSS, Javascript, UI/UX 디자인
+
+백엔드는 서버 측에서 동작하는 부분, 데이터 처리, 로직 실행등 서버와 관련된 동작을 한다.
+서버 사이드 언어 : PHP, Python(Django), Java(Spring), Ruby(Rails), C#(ASP.NET) 등으로 다양한 언어로 로직을 구현한다.
+데이터베이스 : 데이터 저장 및 검색에 사용되는 시스템으로 MySQL, PostgreSQL, MongoDB, MariaDB 등 다양한 종류가 있다.
+API(Application Programming Interface) : 클라이언트와 서버 간의 통신 방식으로 데이터 교환 및 리소스 접근 제공 등에 활용된다.
+
+-----------------------------------
+메소드(Method)
+클라이언트가 서버에게 요청을 보낼 때 어떤 방식으로 데이터를 전송하고 처리하는지를 나타낸다.
+1. GET 메소드
+    서버로부터 정보(리소스)를 요청하기 위해 사용된다.
+    URL의 쿼리 문자열(query string)을 통해 데이터를 전송한다.
+    데이터는 URL의 일부로 포함되어 전송되기 때문에 주소창에 노출된다.
+    요청 파라미터는 key=value 형태로 전달되며, 여러 개의 파라미터는 & 기호로 구분된다.
+    GET은 캐싱이 가능하고 북마크 가능한 특성을 가진다. idempotent(멱등성)한 특성을 가진다. (동일한 요청이 여러번 실행되도 동일한 결과가 나와야 한다.)
+    주로 데이터 조회나 검색 등에서 사용된다.
+2. POST 메소드
+    POST는 서버에게 리소스를 생성하거나 수정하기 위해 사용된다.
+    요천 바디(body)에 포함되어 전송된다.
+    URL 상에 데이터 노출되지 않으므로 보안적인 면에서 우수하다.
+    POST요청은 중복 실행 시 같은 작업이 반복되거나 부작용이 발생할 수 있으므로 idempotent하지 않다.(예외 존재)
+    주로 회원가입, 로그인, 폼 제출 등에서 사용된다.
+3. PUT 메소드
+    PUT은 서버에게 리소스를 생성하거나 수정하기 위해 사용된다.
+    요청(body)에 포함하여 데이터를 전송한다.
+    주로 클라이언트가 서버에게 업데이트할 리소스의 전체 내용을 보내는 경우에 사용된다.
+    예를 들어, 게시글 전체 내용을 수정, 파일을 업로드 하는 등에서 사용한다.
+4. DELETE 메소드
+    DELETE는 서버에게 특정 리소스를 삭제하기 위해 사용된다.
+    주로 해당 URL의 리소스를 삭제하는 요청을 보낼 때 사용된다.
+    DELETE요청 idempotent한 특성을 가진다. 동일한 요청이 여러 번 와도 동일한 결과가 나와야한다.
+    예를 들어, 게시글 삭제, 회원 탈퇴 등에서 사용할 수 있다.
+
+----------------------------------
+웹 클라이언트 라이브러리
+1. requests
+    파이썬에서 HTTP 요청을 보내고 응답을 처리하기 위한 라이브러리 
+    간결하고 사용하기 쉬운 API : HTTP 요청을 보내고 응답을 처리하는 것을 쉽게 만들어 준다. GET, POST, PUT, DELETE 등의 다양한 메소드를 지원한다.
+    파라미터 전달 : requests를 사용하여 URL에 쿼리 문자열 형태로 파라미터를 전달할 수 있다.
+    request.get(url, params={'key':'value'})
+    요청 헤더 설정
+        requests를 사용하여 요청 헤더에 필요한 정보(인증, 권한, 사용자 에이전트(User-Agent)등)를 추가할 수 있다.
+    응답 처리
+        requests로 받은 응답 객체(Response Object)에서 상태 코드(State Code), 헤더(Header), 본문(Body)등의 정보에 접근할 수 있다.
+    세션 관리
+        requests.Session 클래스를 사용하여 세션을 유지하고,, 요청 간의 쿠키와 같은 정보를 공유할 수 있다.
+    파일 업로드 및 다운로드
+        multipart/form-data 형식으로 파일을 업로드하거나 바이너리 데이터를 다운로드 하는 등의 작업을 할 수 있다.
+    HTTPS 지원과 SSL 인증서 검증
+        requests는 HTTPS 프로토콜을 지원하며, SSL 인증서 검증 기능도 제공한다.
+2. urllib
+    파이썬 표준 라이브러리,  URL 작업과 관련된 다양한 모듈을 제공한다.
+    urllib.request 모듈은 HTTP 요청을 보내고 응답을 처리하는 기능을 제공한다.
+    urllib.parse 모듈은 URL 구문 분석 및 조작에 사용된다.
+    urllib.request
+        urlopen() 함수를 사용하여 URL에 대한 GET 요청을 보낼 수 있다.
+        Request 클래스를 사용하여 더 많은 컨트롤, 구성 옵션 등을 설정할 수 있다.
+        응답 객체는 파일 객체와 유사한 인터페이스를 가지며, 상태 코드, 헤더, 본문 등의 정보에 접근할 수 있다.
+    urllib.parse 모듈
+        urlparse() 함수를 사용하여 URL 문자열을 구성요소(호스트, 스킴, 경로 등)로 분석할 수 있다.
+        urlunparse() 함수를 사용하여 구성요소로부터 URL 문자열을 생성할 수 있다.
+        쿼리 문자열 파싱 및 조작 기능(parse_qs(), urlencode())도 제공한다.
+3. http.client
+    파이썬 표준 라이브러리에 포함된 HTTP 클라이언트 라이브러리
+    HTTP 요청 보내기
+        http.client.HTTPConnection 클래스 사용하여 서버와의 연결을 설정한다.
+        request() 메소드를 사용하여 GET, POST, PUT, DELETE 등의 메소드로 HTTP 요청을 보낼 수 있다.
+        헤더와 본문 데이터를 설정할 수 있다.
+    응답 처리
+        getresponse() 메소드를 호출하여 서버로부터 받은 응답 객체(Response Object)를 가져온다.
+    세션 관리
+        http.client.HTTPSConnection 클래스는 HTTPS 프로토콜을 지원하는 버전
+        SSL/TLS 연결시 서버의 인증서가 신뢰할 수 있는지 확인을 하거나 인증서 설정 등의 작업을 할 수 있다.
+    예외처리
+        네트워크 오류나 잘못된 요청 등이 발생 가능한 상황에서 예외처리를 할 수 있다.
+        주요 예외로 http.client.HTTPException
+4. Django 내장 웹 클라이언트
+    django.test.Client 클래스를 사용하여 Django 어플리케이션 내에서 테스트 및 시뮬레이션 목적으로 HTTP 요청을 만들 수 있다.
+    주로 테스트 프레임워크에서 사용되지만, 일반적인 웹 클라이언트로서도 활용할 수 있다.
+    HTTP 요청 보내기
+        get(), post(), put(), patch(), delete() 등의 메소드를 사용하여 HTTP 요청을 보낼 수 있다.
+        필요한 경우 URL, 데이터, 헤더 등을 지정할 수 있다.
+    응답 처리
+        해당하는 HTTP 응답 객체를 반환한다.
+    세션 유지
+        한번연결된 세션을 유지하고 여러 요청에 대해 동일한 세션 상태를 유지할 수 있다.
+    폼 처리
+        post() 메소드를 사용하여 데이터를 제출할 수 있다. 이는 실제 브라우저 제출과 비슷한 동작을 한다.
+        
+-------------------------------------
+웹 서버 라이브러리
+http.server 모듈에 포함되어 있는 클래스
+1. HTTPServer
+    http.server.HTTPServer 클래스는 기본적인 HTTP 서버를 구현하는데 사용된다.
+    TCP 소켓을 생성하고 요청을 수신하기 위해 지정된 IP 주소와 포트에 대기한다.
+    요청이 들어오면 해당 요청을 처리할 핸들로 객체(BaseHTTPRequestHandler의 인스턴스)를 생성하여 처리한다.
+2. BaseHTTPRequestHandler
+    http.server.BaseHTTPRequestHandler 클래스는 HTTP 요청을 처리하는 핵심 로직을 구현하는 추상클래스다.
+    실제로 사용하기 위해서는 해당 클래스를 상속 받아서 사용자 정의 핸들러 클래스를 작성해야한다.
+3. 주요 메소드
+    do_GET()
+        GET 요청에 대한 처리 로직을 구현한다.
+    do_POST()
+        POST요청에 대한 처리 로직을 구현한다.
+    send_response()
+        응답상태 코드와 헤더 정보를 전송한다.
+    send_header()
+        응답 헤더 정보를 전송한다.
+    end_headers()
+        응답 헤더의 끝임을 알리는 빈 줄(CRLF)를 전송한다.
+4. SimpleHTTPRequestHandler
+    정적 파일을 제공하기 위한 간단한 HTTP 요청 처리기다.(개발 및 테스트용)
+    SimpleHTTPRequestHandler는 BaseHTTPRequestHandler를 상속하며, 기본 메소드들을 상속받아 정적 파일 서비스를 처리하는 추가 로직을 구현한다.
+    정적 파일 서비스
+        현재 작업 디렉토리에서 정적 파일(HTML, CSS, Javascript, 이미지 등)을 제공한다.
+        GET 요청에 대해 요청된 파일이 존재하는 경우 파일을 응답으로 보낸다.
+    Content-Type 자동설정
+        요청된 파일의 확장자를 기반으로 Content-Type의 헤더 값을 자동으로 설정한다.
+        .html 파일 -> /text/html, .jpg -> image/jpg
+    Range 지원
+        Range 요청 헤더가 있는 경우 해당 범위만큼의 데이터만 응답으로 보낼 수 있다.
+        다운로드 중 일부만 필요한 경우 -> 대용량 파일 전송, 스트리밍과 같은 상황에서 유용하다.
+5. CGIHTTPRequestHandler (Common Gateway Interface)
+    CGI는 웹 서버와 외부 프로그램 간의 표준 인터페이스를 제공하여 동적인 웹 콘텐츠를 생성하는데 사용되고,
+    CGIHTTPRequestHandler는 CGI 프로그램을 실행하고 처리하기 위해 사용된다.
+    CGIHTTPRequestHandler는 BaseHTTPRequestHandler를 상속하며, CGI 스크립트를 실행하기 위한 추가 로직을 작성한다.
+    CGI 스크립트 실행
+        CGIHTTPRequestHandler는 클라이언트가 요청한 CGI스크립트를 실행한다.
+        GET, POST 요청에 대한 환경 변수와 데이터(payload)를 설정하여 스크립트를 호출한다.
+        스크립트의 실행 결과가 HTTP 응답으로 반환된다.
+    환경 변수
+        요청 메소드, URL 경로, 쿼리 문자열 등과 같은 정보가 환경 변수로 설정되어 CGI 스크립트에서 참조할 수 있다.
+        이러한 환경 변수들은 on.environ 딕셔너리에 저장되어 전달된다.
+    보안 검사
+        기본적으로 CGIHTTPRequestHandler는 보안검사를 수행하여 악성 코드나 디렏토리 트래버설(directory traversal) 공격을 방지한다.
+        경로 검사, 접근 제어 등의 보안 기능도 내장되어 있다.
+        500 Internal Error 오류 발생 시 내장된 오류 페이지를 출력한다.
+
+-------------------------------------
+웹 서버와 클라이언트는 HTTP 프로토콜을 사용하여 통신한다.
+HTTP에서 응답 - 상태 줄(status line), 헤더(header), 빈 줄(blink line), 본문(body)
+상태 줄 : HTTP 버전, 상태 코드, 상태 메세지
+헤더 : 응답에 대한 추가 정보, (key:value) 형태로 이루어져 있다.
+빈 줄 : 헤더와 본문 사이에 위치하며, 이것이 HTTP 요청의 끝을 나타낸다. 즉, 빈 줄이 있어야 헤더의 끝과 본문의 시작을 알수 있다.
+본문 : 실제 데이터
+
+String : 널문자('\0') 문자열의 끝
+HTTP 통신 : 빈 줄('\n') 요청의 끝
+
+------------------------------------
+Django : python 기반 오픈 소스 웹 어플리케이션 프레임워크
+프레임워크 : 장고가 웹 어플리케이션 개발에 많은 기능을 제공하고, 만드는 것을 효율적으로 돕는다.
+
+장고의 장점
+    (소규모, 대규모) 범위 관계없이 웹 어플리케이션 개발에 사용된다.
+    관리자 패널, 데이터베이스 인터페이스, 인증 및 권한 설정 등과 같이 다양한 기능들이 내장되어 있다.
+MVC와 MTV
+    MVC(Model-View-Controller) 소프트웨어 디자인 패턴
+     Model : 데이터베이스와 상호작용하는 부분, 데이터를 처리하고 검증한다.
+     View : 사용자에게 뵤여지는 부분 (UI 로직)
+     Controller : 모델과 뷰 사이에서 정보를 주고 받으며, 전체적인 흐름 제어
+    MTV(Model-Template-View) : Django에서 사용하는 디자인 패턴
+     Model : 데이터베이스와 상호작용하는 부분, 데이터를 처리하고 검증한다.
+     Template : 사용자에게 보여지는 부분, HTML, Django 템플릿 언어를 사용하여 만든다.
+     View : 컨트롤러 역할, 사용자의 요청을 받아 적절한 모델을 호출하고, 데이터, 값 들을 최종적으로 템플릿에 전달하여 페이지를 생성한다.
+
+    MVC 패턴 : 관심사 분리(Separation of Concerns)
+        세가지 역할로 구분한 이유는 어플리케이션의 로직을 명확히 구분함으로써 코드의 유지보수성, 가독성을 높일 수 있다.
+        Model : 어플리케이션 데이터와 비즈니스 로직을 처리하는 부분, CRUD(Create, Read, Update, Delete) 작업 등을 수행한다.
+        View : User Interface, 모델에서 처리된 데이터를 사용자에게 보여준다. 사용자의 입력을 받는다.
+        Controller : 사용자의 입력을 전달 받아서 해당 작업에 맞는 모델 함수를 호풀하고, 그 결과를 다시 뷰에 젼달한다.
+    Model
+    장고에서 Model은 데이터베이스의 구조를 Python코드로 표현한 것이다.
+    각 모델은 하나의 데이터베이스 테이블 해당하며, 모델의 속성(attributes)은 테이블 필드(columns)를 나타낸다.
+    from django.db import models
+
+    class Post(models.Model):
+        title = models.CharField(max_length=200)
+        content = models.TextField()
+        data = models.DateTimeField('date published')
+    
+    CREATE TABLE my_post{
+        'id' serial NOT NULL PRIMARY KEY,
+        'title' varchar(200) NOT NULL,
+        'content' varchar(30)
+        'date' date
+    }
+    Post라는 이름의 테이블을 데이터베이스 내에 생성한다.
+    title, content, date는 각각 문자열 필드, 텍스트 필드, 날짜/시간 필드엥 대응되며 테이블에 columns 생성
+    ORM(Object Realtional Mapping)
+        객체지향 프로그래밍 언어와 데이터베이스 사이에 관계를 매핑하기 위한 기술.
+        장고는 자체적인 ORM시스템을 보유하고 있어서, SQL 쿼리 없이 데이터베이스 작업을 할 수 있다.
+
+    from django.utils from timezone
+
+    post = Post(title='제목', content="내용", date=timezone.now())
+    post.save()
+
+    마이그래이션(migrations)
+        장고 모델 변경사항을 추적하고 이러한 변경사항을 실제 데이터베이스 스키마에 반영하기 위한 시스템이다.
+        python manage.py makemigrations
+        python manage.py migrate
+    URLs와 뷰
+        URLconf(URL Configuration)는 특정 URL이 뷰와 어떻게 연결되는지 장고에게 알려주는 매커니즘
+        장고가 웹 요청을 받으면 이를 처리하기 위해 URLconf를 사용하여 해당 요청 URL을 기반으로 적절한 뷰를 찾는다.
+        URLconf은 urls.py에 정의되며, 이 파일은 프로젝트에 각 폴더 안에 모두 있을 수 있다.
+        urls.py 파일 안에서는 urlpatterns이라는 이름의 리스트 변수를 정의하여 URL 패턴과 뷰 함수/클래스 간의 매핑을 나타낸다.
+        from hello.views import hello_world
+
+        urlpatterns = [
+            path('hello/', hello_world)
+        ]
+        path 함수는(첫 번째 인자가 URL 패턴 문자열, 두 번째 인자가 해당 URL에 대응하는 뷰 함수/클래스) 를 받아서 하나의 경로(route)를 생성한다.
+        이렇게 생성된 경로들은 urlpatterns에 추가된다.
+        path('post/<int:id>/', post_detail),
+        <int:id>는 장고 URL패턴에서 동적 URL 패턴을 정의하는 방법이다.
+        int : URL의 일부분을 정수로 매칭한다.
+        str : URL의 일부분을 비어 있지 않은 문자열로 배칭한다. 슬래시(/)는 포함되지 않는다.
+        slug : ASCII문자, 숫자, 하이픈 또는 밑줄만 포함하는 문자열에 매칭한다.
+        uuid : UUID형식의 문자열과 매칭한다. (16진수, 네트워크 관련)
+        path : 슬래시를 포함한 모든 문자령에 매칭된다.
+
+        뷰와 함수/클래스 연결
+        View는 장고에서 웹 요청을 받아 처리하고 응답을 반환하는 컴포넌트다. 뷰는 함수형태(function-base view)나 클래스 형태(class-base view)로 작성한다. 
+            function-base view
+                from django.http import HttpResponse
+
+                def hello_world(request):
+                return HttpResponse('Hello World')
+            가장 기본적인 형태의 뷰, 하나의 파이썬 함수가 하나의 웹페이지에 대응한다.
+            class-base view
+                from django.http import HttpResponse
+                from django.views import View
+
+                class HelloWorldView(View:)
+                    def get(self, request):
+                        return HttpResponse('Hello World')
+            유지보수성과 코드 구조화 등 여러 면에서 이점이 있는 클래스 기반 뷰
+        
+        템플릿 시스템
+        장고 템플릿 언어(DTL : Django Template Language)와 템플릿 상속
+        장고에서 템플릿 언어는 HTML코드에 동적 데이터를 삽입하거나 제어 구조(if, for 등)을 사용할 수 있게 해주는 템플릿 엔진이다.
+        DTL은 <h1>Hello, {{name}}</h1>
+
+        <ul>
+        {% for item in itemlst %}
+            <li>{{item}}</li>
+        {% endfor %}
+        </ul>
+
+        템플릿 상속
+        템플릿 시스템에 상속이 존재한다. 여러 페이지에서 공유하는 기본 레이아웃을 한 번만 작성하고 이를 상속받아 각각의 페이지에서 추가해서 사용할 수 있다.
+        parent.html
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <title>{% block title %}Title{% endBlock %}</title>
+            </head>
+            <body>
+                {% block content %}
+
+                {% endblock%}
+            </body>
+        </html>
+        child.html
+        {% extends 'parent.html' %}
+
+        {% block title %}
+        home
+        {% endblock %}
+        {% block content %}
+        <p> Hello my Home </p>
+        {% endblock %}
+
+        child.html 파일은 parent.html 파일을 상속받는다. extends
+        부모 템플릿에서 정의한 title 및 content 블록을 재정의하여 자신만의 내용을 추가한다. block
+        프로젝트 설계 -> 모델 정의 -> URL conf 지정 -> 템플릿 정의 -> 뷰 정의
+
+----------------------------------
+새 마이그레이션 생성
+python manage.py makemigrations newapp --empty
+
+마이그레이션 파일을 만들고 migrate 실행 이후 왜 다시 수정이 안될까?
+마이그레이션은 Django에서 데이터베이스 스키마를 변경하는 작업을 추적하는 방법이다.
+모델에 대한 변경 사항을 마이그레이션 파일로 생성한 후, migrate 적용하여 스키마를 업데이트한다.
+새로운 데이터 생성, 삭제 등의 단순 작업들은 Python 코드 수준에서만 이루어진다.
+이러한 작업들은 데이터베이스 스키마에 영향을 줄 수가 없다.
+
+뷰 함수
+    index() : 전체 질문 목록을 보여주는 페이지 처리.
+    detail() : 하나의 질문에 대한 세부 정보 처리.
+    results() : 특정 질문에 대한 투표결과를 보여주는 페이지 처리.
+    vote() : 사용자의 투표를 처리하는 로직.
+
+    from django.http import HttpResponse
+    from django.shortcuts import get_object_or_404, render
+
+    from .models import Question
+
+    def index(request):
+        lastest_q_list = Question.objects.order_by('-date')
+        context = {'last Q' : lastest_q_list}
+        return render(request, 'index.html', context)
+
+    def detail(request, quest_id):
+        question = get_object_or_404(Question, pk=quest_id)
+        return render(request, 'detail.html', {'question': question})
+
+    def results(request, quest_id):
+        question = get_object_or_404(Question, pk=quest_id)
+        return render(request, 'detail.html', {'question': question})
+
+    def vote(request, quest_id):
+        #logic
+
+-------------------------------------
+템플릿 시스템
+템플릿 시스템은 웹 어플리케이션에서 동적으로 HTML을 생성하기 위한 도구
+Django의 MTV 아키텍쳐에서 View와 Model 사이의 데이터 전달과 HTML 랜더링을 담당한다.
+템플릿 파일 : .html 확장자를 가진 텍스트 파일
+    템플릿 파일을 프론트엔드 디자인과 백엔드 데이터를 결합하여 최종 HTML문서를 생성하는데 사용된다.
+변수 : 중괄호({{}})  2개 안에 변수를 넣어 해당 변수 값을 출력한다.
+필터 : 중괄호 안에 파이프(|)로 연결하여 변수나 함수의 결과값을 반환하거나 조작한다.
+    {{name|lower}} -> name을 소문자로 필터링
+태그 : 중괄호와 ({% %}) 사이에 위치한다.
+    {% for %} : 반복문 처리
+    {% if %}: 조건문 처리
+    {% url %} : url 생성
+    {% csrf_token %} : 장고에서 POST요청할 때, CSRF(Cross-Site Request Forgery) 공격을 방지하기 위해 사용된다.
+        <from method='post'>
+            {% csrf_token %} #요청이 올바른지 검증
+            <input type=""/>
+        </from>
+    {% with %} : 임시 변수를 정의하여 템플릿 내부에서 재사용할 수 있다.
+        {% with total = num*price %}
+            <p>총 금액 : {{total}} </p>
+        {% with %}
+    {% load %} : 특정 템플릿 라이브러리나 필터를 로드하는데 사용된다.
+    CSS, Javascript 및 이미지와 같은 파일들은 장고 내부에서 설정 되어야한다.정적 파일
+        {% load static %}
+        <img src="{% static 'images/exaple.jpg' %}" alt="Exaple Image"> : 이미지 파일 링크
+    {% block %} : 상속용 블록 정의
+상속 : 상속 기능을 사용하여 공유되는 레이아웃과 코드 조각들을 재사용할 수 있다.
+    {% extends %} : 부모 템플릿 지정
+    {% block %} : 자식 템플릿에서 오버라이드 가능한 블록 정의
+; 주석 : {# #}
+컨텍스트 : 컨트롤러(View) 가 전달하는 데이터는 컨텍스트(context)라고 하고, 딕셔너리 형태로 전달된다.
+    context = {
+        'name' : 'kim',
+        'skill' : 'django',
+    }
+    return render(request, 'index.html', context)
+
+----------------------------------
+Admin 사이트
+관리자 사이트 URL 변경
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls), -> path('내가 원하는 이름/', admin.site.urls),
+]
+모델 관리 화면 커스터마이징(ModelAdmin 클래스)
+list_display : 리스트 페이지에서 표시할 필드들이 지정한다.
+from django.contrib import admin
+from .models import NewModel
+
+class NewModelAdmin(admin.ModelAdmin):
+    list_display = ('field1', 'field2', 'field3'...)
+
+admin.site.register(NewModel, NewModelAdmin)
+
+list_filter : 리스트 페이지에 필터 사이즈바를 추가하고 해당 필드로 필터링 할 수 있다.
+class NewModelAdmin(admin.ModelAdmin):
+    list_filter = ('field1', 'field2') #일부분만 필터 사이드바 추가 가능
+
+search_fields : 검색기능을 제공한다.
+class NewModelAdmin(admin.ModelAdmin):
+    search_fields = ('field1', ...)
+
+fields, fieldsets : 상세 페이지에서 표시할 필드들의 순서와 그룹화 방식을 정의한다.
+fields : 각각의 필드를 개별적으로 나열하여 순서대로 표시한다.
+class NewModelAdmin(admin.ModelAdmin):
+    fields = ('field1', 'field2', ...)
+fieldsets : 관련된 필드들을 그룹화한다.
+class NewModelAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Group1',{
+            field : (field1, ..., fieldn)
+        }),
+        ('Group2',{
+            'fields' : ('field3', 'field4', ...)
+        }),
+    )
+date_hierarchy : 날짜 계층 구조(navigation)을 생성하여 날짜 기반으로 탐색 기능을 제공한다.
+class NewModelAdmin(admin.ModelAdmin):
+    date_hierarchy = 'created_at'
+
+preppopulated_fields : 다른 필드 값을 기반으로 자동으로 값 채우기
+actions : 선택된 객체들에 대해 일괄 작업을 사용 가능하게
+ordering : 정렬 순서 설정
+
+admin 템플릿 경로
+C:\Users\kosmo\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\admin\templates\admin
+
+관리자 페이지에서 외부 패키지(Django Admin Third-Party Packages)
+django-grappelli : 관리자 사이트에 Bootstrap 테마 적용
+django-suit : 외관, 사용성 개선
+django-jet : jQuery, Bootstrap 적용
+django-import-export : Excel, CSV 등의 파일 형식으로 데이터를 가져오고 내보내기 용이하게
+
+파이썬 shell
+모델 import : 모델 클래스를 사용하기위해 모델들을 import 해야한다.
+모델 조회 : objects manager를 사용하여 데이터베이스 객체 조회
+데이터 생성 : create()메소드나 객체 인스턴스 생성 후 save() 메소드 등으로 데이터베이스 추가 생성
+데이터 수정 : 조회한 객체에 속성 값을 변경한 후 save() 메소드 등으로 데이터베이스 변경사항 저장
+데이터 삭제 : 조회한 객체에 .delete()메소드로 삭제
+
+단일 객체 검색 : .get() 메소드 사용
+조건 검색 : .filter() 메소드 사용
+정렬 : .order_by() 메소드 사용
+조건 연산자 : Q 객체 및 연산자 활용
+
+.count() : 몇개 있는지 확인
+.exists() : 결과가 있는지 확인
+
+>>> from vote.models import Question, Choice
+>>> from django.utils import timezone
+>>> q = Question(question_text="비콘은 찍었니?", pub_date=timezone.now())
+>>> q.save()
+>>> Question.objects.all()
+
+----------------------------------------
+Form 처리
+    Form클래스 : HTML에 form요소를 python 코드로 생성하는 것. Form 클래스에는 필드와 그에 대한 유효성 검사를 포함한다.
+    유효성 검사(Validation) : is_valid() 메소드를 통해 제출된 데이터의 유효성을 검사한다.
+        데이터가 유효하다면 True가 나오고, 유효하지 않으면 False가 나오는데 해당 필드와 관련된 에러는 form.error에서 확인할 수 있다.
+    모델 폼(Model Form) : ModelForm 클래스는 모델과 연관된 폼을 생성할 수 있다. 모델 필드 기반으로 자동 폼 필드를 생성한다.
+    폼 커스터마이징 : Form 및 ModelForm 클래스를 상속해서 커스텀 폼을 만든다.
+
+from django import forms
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=20)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+
+ContactForm에는 3개의 필드(name, email, message)로 구성되어 있다.
+각각 문자열(CharField), 이메일(EmailField), 텍스트 위젯(Textarea 적용된 CharField)
+
+모델 폼
+from dajngo import forms
+from .models import NewModel
+
+class NewModelForm(forms.NewModel):
+    class Meta:
+        model = NewModel
+        field = ['field1', 'field2', ...]
+
+기존에 만들어진 NewModel 모델에 기반한 ModelForm이다. Meta 내부 클래스에서 사용할 모델과 해당 모델 필드를 폼 필드로 사용할지 결정한다.
+
+#views.py
+from django.shortcuts import render # render 함수 사용하기 위해 (기본)
+from .forms import ContactForm # ContactForm 폼 클래스
+
+def contact_view(request):
+    if request.method == 'POST': # 요청 메소드가 POST인지 확인
+        form = ContactForm(request.POST) # 요청 데이터로부터 폼 객체를 생성
+        if form.is_valid(): #폼 형식이 유효한지 판단
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            message = form.cleaned_data.get('message') # 유효성 검사를 통과한 데이터에 필요한 값을 가져온다.
+            #이베일 보내기 로직
+            return redirect('results') # 다른 페이지로 리다이렉트
+    else : 
+        from = ContactForm() #GET 요청일 때, 빈 폼 객체를 생성한다.
+
+    return render(request, 'contact.html', {'form':form})
+
+#contact.html
+<form method='post'>
+    {% csrf_token %} #보안 토큰
+    {{form.non_field_errors}} #폼에 대한 일반적인 오류 메세지 출력
+    <div class='fieldWrapper'>
+        {{form.name.errors}} # 이름에 대한 오류메세지 출력
+        <label for="{{form.name.id_for_label}}">이름 : </label>
+        {{form.name}} # 실제 입력필드를 생성하여 폼과 연결한다.
+    </div>
+    <div class='fieldWrapper'>
+        {{form.email.errors}}# 이메일에 대한 오류메세지 출력
+        <label for='{{form.email.id_for_label}}'>이메일 : </label>
+        {{form.email}} # 실제 입력필드를 생성하여 폼과 연결한다.
+    </div>
+    <div class='fieldWrapper'>
+        {{form.message.errors}}# 메세지에 대한 오류메세지 출력
+        <label for='{{form.message.id_for_label}}'>메세지 : </label>
+        {{form.message}} # 실제 입력필드를 생성하여 폼과 연결한다.
+    </div>
+    <input type="submit" value="보내기">> #전송버튼
+</form>
+
+클래스형 뷰(Class-Based Views, CBVs)
+장고 뷰에서는 HTTP요청을 받아 처리하고, HTTP응답을 반환한다.
+함수형 뷰(Function-Based Views, FBVs), 클래스형 뷰(Class-Based Views, CBVs)
+함수형 뷰
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def hello(request):
+    return HttpResponse("안녕하세요")
+
+클래스형 뷰 (OOP)
+from django.http import HttpResponse
+from django.views import View
+
+class HelloView(View):
+    def get(self, request):
+        return HttpResponse("안녕하세요")
+
+View 클래스 : 장고의 가장 기본적인 CBV, 이 클래스틑 HTTP 메소드에 따라 호출되는 메소드를 정의할 수 있다.
+URL 패턴에 뷰를 연결하려면 as_view() 메소드를 사용해야 한다.
+
+#urls.py
+from dajngo.urls import path
+from .views import HelloView
+
+urlpatterns = [
+    path('hello/', HelloView.as_view()),
+]
+
+TemplateView : 템플릿을 랜더링하고 그 결과를 HTTP 응답으로 반환한다.
+from django.views.generic import TemplateView
+
+calss HomeView(TemplateView):
+    temp = 'home.html'
+
+ListView, DetailView : 객체 목록, 단일 객체 상세 정보를 보여준다.
+from django.views.generic import ListView, DetailView
+from .models import NewModel
+
+class NewModelListView(ListView):
+    model = NewModel
+
+class NewModelDetailView(ListView):
+    model = NewModel
+
+메소드 오버라이딩
+from django.views.generic import TemplateView
+
+calss HomeView(TemplateView):
+    temp = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hello'] = '안녕하세요'
+        return context
+
+Mixin : 여러 뷰에서 공통적으로 사용되는 동작을 Mixin으로 정의해서 코드를 줄인다.
+
+from django.http import HttpResponse
+from django.views import View
+
+class MyMixin:
+    def dispatch(self, request, *arg, **kwargs):
+        print('Request Process')
+        return super().dispatch(request, *arg, **kwargs)
+        
+class HelloView(MyMixin, View):
+    def get(self, request):
+        return HttpResponse("안녕하세요")
+
+# HelloView에서는 모든 요청에 대해 Request Process라는 베세지를 호출하게 된다.
+# 주의할점 : Mixin은 독립적으로 동작할 수 없다. Python MRO(Method Resolution Order)에 따라 상속 순서가 중요하다.
+# 실제 뷰 클래스는 최하위에 존재해야 한다.
+
+폼 처리
+FormView
+폼 제출을 처리하는 뷰, form_class속성을 사용하여 폼 클래스를 지정하고, success_url속성에 폼 제출 성공시 리다이렉트할 URL을 제공한다.
+form_valid() 메소드를 오버라이드하여 추가 로직을 구현할 수 있다.
+
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+from myapp.forms import ContactForm
+
+class ContactView(FormView):
+    temp = 'contact.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('success')
+
+    def form_valid(self, form):
+    #d유효성 검사 완료된 후 작업 (cleaned_data)
+    return super().form_valid(form)
+
+reverse : 주어진 뷰에 대한 URL 생성
+
+reverse_lazy : reverse와 똑같은데, 더 느리다. 명시적 엑세스(explicity accessed)될 때까지 URL 생성하지 않는다.
+보통 success_url같은 클래스 기반 뷰에서 사용한다.
+
+CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView
+from myapp.models import NewModel
+
+class NewModelCreate(CreateView):
+    model = NewModel
+    fields = ['field1', 'field2', ...]
+    success_url = reverse_lazy('success')
+class NewModelUpdateView(UpdateView):
+    model = NewModel
+    fields = ['field1', 'field2', ...]
+    success_url = reverse_lazy('success')
+
+# 추가적인 로직이 필요하다면 메소드 오버라이딩하여 사용할 수 있다.(get_context_data, form_valid 등)
+
+제네릭 뷰 : 공통적으로 사용할 수 있는 기능들을 추상화하여 제공해주는 클래스형 뷰
+from django.views.generic 패키지에 있다.
+
+Base View : View, TemplateView, RedirectView
+Generic Display View : ListView, DetailView
+Generic Edit View : FormView, CreateView, UpdateView, 
+Generic Date View
+    ArchiveIndexView(날짜 기반 최상위 뷰) : date_field 속성에 지정한 날짜 필드를 기준으로 내림차순으로 보여준다.
+    YearArchiveView : 추출된 연도 인자를 기준으로 월을 보여준다
+    MonthArchiveView : 추출된 연, 월에 해당하는 객체들을 보여준다.
+    WeekArchiveView : 추출된 연, week에 해당하는 객체들을 보여준다.
+    DayArchiveView : 추출된 연, 월, 일에 해당하는 객체들을 보여준다.
+    TodatArchiveView : 오늘 날짜에 해당하는 객체를 보여준다.
+    DateDetialView : 연, 월, 일 또는 pk에 해당하는 객체 하나를 보여준다.
+
+커스터마이징
+from django.http import HttpResponse
+from django.views import View
+
+class CustomView(View):
+    def get(self, request):
+        return HttpResponse('CustomView')
+
+CBV FBV
+FBV 장점 : 간단한 로직이나 작은 프로젝트에 적합하다. HTTP 메소드별로 처리가 필요한 경우 if문만 가지고도 충분히 처리가능하다.
+CBV 장점 : 복잡한 웹 어플리케이션에서는 클래스와 오버라이딩을 통해 체계적인 개발을 할 수 있다. 유지보수성, 재사용성, Mixin ...
+    제네릭 클래스 뷰를 활용하면, CRUD 작업 같은 로직을 쉽게 구현할 수 있다.
+    단, 메소드를 오버라이딩하여 사용할 때, 항상 해당 메소드를 super()함수로 호출해야한다.
+
+--------------------------------------
+랜더링
+Django에서 뷰를 구현할 떄, render함수를 사용하는 것이 일반적이다.
+render함수는 ㅌ템플릿 파일과 contexet 데이터를 받아서 최종적인 HTML 응답을 생성하고 이를 HttpResponse객체에 담아 반환한다.
+render(request, 'template.html', context)
+이미 내부적으로 HttpResponse을 사용하고 있다.
+from django.template.loader get_template
+
+template = get_template('template.html')
+html = template.render(context)
+return HttpResponse(html)
+
+------------------------------------
+가상환경
+아나콘다 에러가 났던 이유 : 아나콘다를 설치를 할 때, 많은 패키지들을 설치한다.
+프로젝트를 배포할 시 원격 서버에 따로 패키지들을 설치해줘야 한다.
+가상환경생성
+    python -m venv myenv
+    현재 디렉토리에 myenv라는 새로운 가상환경을 생성한다.
+가상환경 활성화
+    myenv\Scripts\activate
+패키지 설치
+    pip install django
+프로젝트 생성, 앱 생성...
+
+웹 서버 선택(Nginx, Apache)
+웹 서버는 클라이언트의 요청을 받아서 처리하고 그 결과를 다시 클라이언트한테 전달하는 역할을 한다.
+Nginx : 높은 동시 연결 처리능력을 제공하여 많이 사용되고 있는 웹 서버다. 설정이 비교적 간단하고, 정적 파일 처리 능력이 우수하다.
+Apache : 가장 널리 사용되고 있는 오픈소스 웹 서버다. 다양한 모듈을 통해 기능 확장이 가능하다.
+그러나 장고 어플리케이션은 파이썬으로 작성된 동적인 콘텐츠를 생성한다.
+이러한 작업을 처리하기 위해서는 WSGI(Web Server Gateway Interface)어플리케이션 서버가 필요하다.
+Gunicon, uWSGI가 주로 사용된다.
+Gunicon : Green Unicon은 python WSGI HTTP Server로 파이썬 웹 어플리케이션과 함께 많이 사용되는 서버 중 하나.
+    설정과 배포가 상대적으로 간단하다. Nginx와 잘 연동해서 사용한다.
+uWSGI : python WSGI HTTP Server로 파이썬 웹 어플리케이션과 함께 많이 사용되는 서버 중 하나.
+    uWSGI는 여러 프로토콜과 스택들에 대해 지원하기 때문에 Gunicon 보다 다양한 설정과 커스터마이징이 가능하다.
+
+Nginx 사용방법
+Nginx 설치 (운영체제의 패키지 관리자)
+    sudo apt-get update
+    sudo apt-get install nginx
+Nginx 설정(etc/nginx/sites-available/)
+    server{
+        listen 80;
+        server_name your_domain;
+
+        location / {
+            included proxy_params;
+            proxy_pass http://unix:/path/to/myapp/app.sock; #WSGI 어플리케이션 서버가 동작하는 주소
+        }
+        location /static/{
+            alias /path/to/myapp/static/files/;
+        }
+    }
+Nginx 재시작
+    sudo service nginx restart
+
+Apache 사용방법
+Apache 설치
+    sudo apt-get update
+    sudo apt-get install apache2
+Apache 설정
+    <VirtualHost *::80>
+        ServerName your_domain
+
+        WSGIScriptAlias //path/to/myapp/django/app/wsgi.py
+
+        Alias  /path/to/myapp/static/files/
+
+        <Directory /path/to/myapp/django/app/>
+            <File wsgi.py>
+                Require all granted
+            </File>
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+Apache 재시작
+    sudo service apache2 restart
+
+Gunicon 사용방법
+Gunicon 설치
+    pip install gunicon
+Gunicon 실행
+    gunicon {project name}.wsgi
+
+uWSGI
+uWSGI 설치
+    pip install uwsgi
+uWSGI 실행
+    uwsgi --http :8000 --module {project name}.wsgi
+
+웹 서버와 WSGI 어플리케이션 서버 연동
+웹 서버(Nginxm, Apache)는 주로 정적 파일들의 처리를 담당한다.
+WSGI (Guniconm uWSGI)는 주로 동적인 내용(장고 앱에서 처리되는 부분)들의 처리를 담당한다.
+
+Nginx, Gunicon 연동
+    Gunicon 실행 : gunicon {project name}.wsgi:application --bind 127.0.0.1:8000
+    Nginx 설정 : etc/nginx/sites-available/default
+        location / {
+            proxy_pass http://127.0.0.1:8000; 
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    Nginx 재시작 : sudo service nginx restart
+
+Apache, uWSGI 연동
+    Apache 설정(환경설정 파일 httpd.conf)
+        <VirtualHost *::80>
+        ServerName your_domain
+
+        Alias  /path/to/myapp/static/files/
+
+        <Directory /path/to/myapp/django/app/>
+            <File wsgi.py>
+                Require all granted
+            </File>
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        ProxyPass / uwsgi://128.0.0.1:8000
+        /
+    </VirtualHost>
+    Apache 재시작
+        sudo service apache2 restart
+    uWSGI 실행
+        uwsgi --http :8001 --module {project name}.wsgi
+
+정적 파일 관리
+배포 환경에서는 collectstatic 명령어를 활용하여 정적 파일들을 한 곳에 모아두는 작업과 이 파일들에 접근할 수 있도록
+웹 서버의 경로설정을 해줘야 한다.
+collectstatic 실행
+    python manage.py collectstatic
+    해당 명령어를 실행하면 Dajngo설정의 STATIC_ROOT에 지정된 디렉토리 모든 정적 파일들이 복사된다.
+웹 서버 설정
+웹서버는 클라이언트 직접 정적 파일에 접근할 수 있도록 설정해야 한다.
+Nginx
+    location /static/{
+        alias /path/to/myapp/static/files/;
+    }
+Apache
+    <Directory /path/to/myapp/django/app/>
+        <File wsgi.py>
+            Require all granted
+        </File>
+    </Directory>
+
+보안 설정
+HTTPS(HyperText Transfer Protocol Secure) : 웹 통신에서 데이터를 암호화하여 보안을 강화하는 프로토콜이다.
+HTTPS를 사용하기 위해서는 SSL/TLS 인증서가 필요하다. 이는 CA(Certificate Authiority)를 구입하거나 다른 서비스(Let`s Encrypt)를 통해 사용할 수 있다.
+Nginx 예시
+server{
+    listen 80;
+    server_name your_domain
+    return 301 https://$host$request_url; #전달 받은 http 요청을 모두 https로 리다이렉트
+}
+server{
+    listen 443 ssl;
+    server_name your_domain
+
+    ssl_certificate /etc/letsencrypt/live/your_domain/fullchain.pem; #인증서 경로
+    ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # 개인키 경로
+}
+
+Apache 예시
+<VirtualHost *:80>
+    ServerName your_domain
+    Redirect permanent / https://your_domain/
+</VirtualHost>
+<VirtualHost *:443>
+    ServerName your_domain
+    
+    SSLEngine on
+    SSLCertificateFile "/path/to/sample_url"
+    SSLCertificateKeyFile "/path/to/www.sample_url.com.key"
+</VirtualHost>
+
+Django 보안 설정 : 장고 자체에도 보안 기능이 있어서 setting.py에서 설정이 가능하다.
+DEBUG : 배포 환경에서는 False 설정
+SECRET_KEY : 암호화 작업
+ALLOWED+HOSTS : 서비스할 도메인 이름만 추가하여 해당 호스트들만 작동되게 설정할 수 있다.
+CSRF_COOKIE_SECURE, SESSION_COOKIE_SECURE : HTTPS를 사용할 경우 이 값들을 TRUE로 설정하여 쿠키가 HTTPS를 통해서만 전송되도록 할 수 있다.
+CSRF_COOKE_HTTPONLY, SESSION_COOKIE_HTTPONLY : 이 값들 True로 설정하면 Javascript 에서 쿠키에 접근하는 것을 방지할 수 있다.
+
+배포 
+
+
+#뷰 클래스, 폼 클래스를 활용해서 CRUD를 사용할 수 있는 사이트를 만들어보자
+#게시판, 블로그, SNS, 쇼핑몰 ...
+
+디렉토리 생성 후 -> 이동
+django-admin startproject projectname
+
+cd projectname
+
+python manage.py startapp appname
+
+모델 수정
+
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py creasuperuser
+
+python manage.py runserver

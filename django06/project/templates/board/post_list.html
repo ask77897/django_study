@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=divuce=width, initial-scale=1.0">
+        <title>this is title</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+    </head>
+    <body>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">게시판</h1>
+                </div>
+            </div>
+        </section>
+        {% for post in posts %}
+            <h2><a href='{% url 'post_detail' pk=post.pk %}'>{{post.title}}</a></h2>
+            <hr>
+        {% empty %}
+            <p>게시물이 없습니다.</p>
+        {% endfor %}
+    </body>
+</html>
